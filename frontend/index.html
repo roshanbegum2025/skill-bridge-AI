@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkillBridge AI — Internship Intelligence Platform</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"></head>
+<body>
+
+  <!-- ===== BACKGROUND EFFECTS ===== -->
+  <div class="bg-grid"></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">SkillBridge <span class="logo-accent">AI</span></span>
+      </div>
+      <nav class="nav">
+        <a href="#resume" class="nav-link active" data-section="resume">Resume</a>
+        <a href="#match" class="nav-link" data-section="match">Match</a>
+        <a href="#chat" class="nav-link" data-section="chat">Advisor</a>
+      </nav>
+      <div class="header-badge">
+        <span class="pulse-dot"></span>
+        Powered by Claude on Bedrock
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-tag">AI-Powered Career Intelligence</div>
+    <h1 class="hero-title">
+      Bridge the gap between<br>
+      <span class="hero-highlight">your skills</span> and your future
+    </h1>
+    <p class="hero-sub">
+      Paste your resume. Discover your strengths. Match with internships.<br>
+      Get personalized career advice — all in seconds.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#resume" class="btn btn-primary">Analyze My Resume</a>
+      <a href="#chat" class="btn btn-ghost">Ask the AI Advisor →</a>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- ==============================
+         SECTION 1 — RESUME ANALYZER
+    ============================== -->
+    <section id="resume" class="section">
+      <div class="section-header">
+        <span class="section-tag">01</span>
+        <h2 class="section-title">Resume Analyzer</h2>
+        <p class="section-desc">Paste your resume text below. Our AI will extract your technical skills, soft skills, and suggest ideal career paths.</p>
+      </div>
+
+      <div class="card card-large">
+        <div class="card-body two-col">
+          <!-- Left: Input -->
+          <div class="input-side">
+            <label class="field-label" for="resumeText">Your Resume Text</label>
+            <textarea
+              id="resumeText"
+              class="textarea"
+              rows="14"
+              placeholder="Paste your resume here…
+
+Example:
+John Doe
+Computer Science Student, UC Berkeley
+
+Experience:
+- Software Engineering Intern at Acme Corp (Python, Django, REST APIs)
+- Freelance Web Developer (React, Node.js, MongoDB)
+
+Skills: Python, JavaScript, React, SQL, Git, Agile
+Soft Skills: Team collaboration, problem-solving, communication
+
+Projects:
+- Built ML model for sentiment analysis (94% accuracy)
+- Created full-stack e-commerce site (1000+ users)"
+            ></textarea>
+            <div class="input-footer">
+              <span class="char-count" id="charCount">0 characters</span>
+              <button class="btn btn-primary" id="analyzeBtn" onclick="analyzeResume()">
+                <span class="btn-icon">✦</span>
+                Analyze Resume
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Results -->
+          <div class="result-side" id="resumeResults">
+            <div class="empty-state" id="resumeEmpty">
+              <div class="empty-icon">◈</div>
+              <p>Your skill analysis will appear here</p>
+            </div>
+
+            <!-- Skills Results (hidden until analyzed) -->
+            <div class="results-content hidden" id="resumeContent">
+              <div class="result-block">
+                <h4 class="result-heading tech-heading">⚙ Technical Skills</h4>
+                <div class="tag-cloud" id="techSkills"></div>
+              </div>
+              <div class="result-block">
+                <h4 class="result-heading soft-heading">◎ Soft Skills</h4>
+                <div class="tag-cloud" id="softSkills"></div>
+              </div>
+              <div class="result-block">
+                <h4 class="result-heading career-heading">⬆ Suggested Career Paths</h4>
+                <div class="career-list" id="careerPaths"></div>
+              </div>
+            </div>
+
+            <!-- Loading state -->
+            <div class="loading-state hidden" id="resumeLoading">
+              <div class="spinner"></div>
+              <p>Analyzing your resume with AI…</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         SECTION 2 — INTERNSHIP MATCH
+    ============================== -->
+    <section id="match" class="section">
+      <div class="section-header">
+        <span class="section-tag">02</span>
+        <h2 class="section-title">Internship Compatibility</h2>
+        <p class="section-desc">Select an internship role and see how well your resume matches — with an AI-generated compatibility score and explanation.</p>
+      </div>
+
+      <div class="card card-large">
+        <div class="card-body">
+          <div class="match-controls">
+            <div class="field-group">
+              <label class="field-label" for="internshipRole">Select Internship Role</label>
+              <div class="select-wrapper">
+                <select id="internshipRole" class="select">
+                  <option value="">— Choose a role —</option>
+                  <option value="AI Engineer Intern">⚡ AI Engineer Intern</option>
+                  <option value="Data Scientist Intern">📊 Data Scientist Intern</option>
+                  <option value="Web Developer Intern">🌐 Web Developer Intern</option>
+                  <option value="Product Manager Intern">🎯 Product Manager Intern</option>
+                  <option value="UX Designer Intern">🎨 UX Designer Intern</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-group match-resume-note" id="matchResumeNote">
+              <span class="note-icon">ℹ</span>
+              Uses the resume text from Section 1. Paste your resume above first.
+            </div>
+            <button class="btn btn-primary" id="matchBtn" onclick="matchInternship()">
+              <span class="btn-icon">◈</span>
+              Check Compatibility
+            </button>
+          </div>
+
+          <!-- Score Result -->
+          <div class="score-area hidden" id="scoreArea">
+            <div class="score-card">
+              <div class="score-header">
+                <span class="score-role" id="scoreRole"></span>
+                <span class="score-label">Compatibility</span>
+              </div>
+              <div class="score-number-row">
+                <span class="score-number" id="scoreNumber">0</span>
+                <span class="score-denom">/100</span>
+              </div>
+              <div class="score-bar-track">
+                <div class="score-bar-fill" id="scoreBarFill"></div>
+              </div>
+              <div class="score-tier" id="scoreTier"></div>
+            </div>
+            <div class="score-explanation">
+              <h4>AI Analysis</h4>
+              <p id="scoreExplanation"></p>
+            </div>
+          </div>
+
+          <!-- Loading -->
+          <div class="loading-state hidden" id="matchLoading">
+            <div class="spinner"></div>
+            <p>Calculating your compatibility score…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         SECTION 3 — CAREER CHATBOT
+    ============================== -->
+    <section id="chat" class="section">
+      <div class="section-header">
+        <span class="section-tag">03</span>
+        <h2 class="section-title">AI Career Advisor</h2>
+        <p class="section-desc">Ask anything about internships, career paths, skills to learn, interview tips, or how to stand out as a candidate.</p>
+      </div>
+
+      <div class="card card-large">
+        <div class="chat-container">
+
+          <!-- Chat Messages -->
+          <div class="chat-messages" id="chatMessages">
+            <!-- Welcome message -->
+            <div class="chat-msg msg-ai">
+              <div class="msg-avatar">AI</div>
+              <div class="msg-bubble">
+                <p>Hello! I'm your AI Career Advisor powered by Claude. 👋</p>
+                <p>I can help you with:</p>
+                <ul>
+                  <li>Choosing the right internship roles</li>
+                  <li>Skills to learn for your target career</li>
+                  <li>Resume and interview tips</li>
+                  <li>Career roadmaps and growth strategies</li>
+                </ul>
+                <p>What would you like to know?</p>
+              </div>
+            </div>
+
+            <!-- Suggested prompts -->
+            <div class="suggested-prompts" id="suggestedPrompts">
+              <button class="prompt-chip" onclick="usePrompt(this)">What skills do I need for an AI Engineer role?</button>
+              <button class="prompt-chip" onclick="usePrompt(this)">How do I prepare for a technical interview?</button>
+              <button class="prompt-chip" onclick="usePrompt(this)">What's the difference between Data Science and ML Engineering?</button>
+              <button class="prompt-chip" onclick="usePrompt(this)">How can I make my resume stand out?</button>
+            </div>
+          </div>
+
+          <!-- Chat Input -->
+          <div class="chat-input-area">
+            <textarea
+              id="chatInput"
+              class="chat-input"
+              rows="2"
+              placeholder="Ask a career question…"
+              onkeydown="handleChatKey(event)"
+            ></textarea>
+            <button class="btn btn-primary chat-send-btn" id="sendBtn" onclick="sendChat()">
+              Send ↑
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">⬡ SkillBridge AI</div>
+      <p class="footer-text">Built with Amazon Bedrock · Claude 3 Haiku · AWS Lambda · S3</p>
+      <p class="footer-note">Prototype — Configure API_BASE_URL in script.js before deploying</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

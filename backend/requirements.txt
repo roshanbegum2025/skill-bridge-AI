@@ -1,0 +1,18 @@
+# SkillBridge AI — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Flask web framework
+flask==3.0.3
+
+# CORS support (allows frontend to call backend API)
+flask-cors==4.0.1
+
+# AWS SDK — used to call Amazon Bedrock
+boto3==1.34.144
+
+# AWS Lambda adapter for Flask
+# Wraps Flask app so it works as a Lambda handler
+mangum==0.17.0
+
+# Optional: for local .env file support during development
+python-dotenv==1.0.1
