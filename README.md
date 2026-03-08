@@ -1,173 +1,103 @@
-🚀 SkillBridge AI
+# SkillBridge AI 🌉
 
-An AI-Powered Internship Recommendation & Career Guidance Platform
+An AI-powered internship recommendation platform that bridges the gap between student skills and opportunities — built on AWS.
 
-SkillBridge AI is an intelligent, end-to-end internship discovery and matching system designed to help students find the right internships—not just any internships.
-Unlike traditional keyword-based platforms, SkillBridge AI evaluates students holistically, combining skills, interests, learning readiness, and success probability to recommend opportunities where students are most likely to learn, perform, and succeed.
+🔗 *Live Demo:* http://skillbridge-ai-frontend-afreens.s3-website.ap-south-1.amazonaws.com
 
-🌟 Key Highlights
+---
 
-🤖 AI-driven resume analysis and skill extraction
+## 📌 What It Does
 
-🎯 Personalized internship matching with success probability scoring
+SkillBridge AI helps students find the right internships by analyzing their resume, scoring compatibility with roles, and providing personalized career advice — all powered by Claude AI on Amazon Bedrock.
 
-🧭 Career path discovery beyond obvious choices
+---
 
-🗣️ AI-powered interview preparation and mock interviews
+## ✨ Features
 
-💬 24/7 career guidance chatbot
+- *Resume Analyzer* — Paste or upload your resume → AI extracts technical skills, soft skills, and career paths
+- *Internship Matcher* — Select a role → get a 0–100 compatibility score with explanation
+- *AI Career Advisor* — Chat with an AI for interview tips, skill roadmaps, and career guidance
 
-🔐 Strong focus on data privacy and security
+---
 
-🧠 Problem Statement
+## 🛠 Tech Stack
 
-Students often struggle to:
+| Layer | Technology |
+|---|---|
+| Frontend | HTML, CSS, Vanilla JavaScript |
+| Backend | Python, Flask, Mangum |
+| AI Model | Amazon Bedrock — Claude 3 Haiku |
+| Serverless | AWS Lambda |
+| API | Amazon API Gateway |
+| Hosting | Amazon S3 (static website) |
+| File Parsing | Amazon Textract (PDF upload) |
 
-Identify their true skill set
+---
 
-Discover internships aligned with their learning goals
+## 📁 Project Structure
 
-Prepare effectively for interviews
+skillbridge-ai/
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+├── backend/
+│   ├── app.py
+│   ├── bedrock_service.py
+│   └── requirements.txt
+└── README.md
 
-Navigate career paths beyond common roles
 
-Meanwhile, internship providers face challenges in identifying candidates who are most likely to complete and perform well.
+---
 
-SkillBridge AI bridges this gap by using artificial intelligence to create data-driven, explainable, and success-focused matches between students and internship providers.
+## 🔄 How It Works
 
-🏗️ System Overview
+User (Browser)
+     │
+     ▼
+Amazon S3 — serves the frontend
+     │
+     ▼
+API Gateway — receives POST requests
+     │
+     ▼
+AWS Lambda — runs Flask backend
+     │
+     ▼
+Amazon Bedrock — Claude 3 Haiku generates response
+     │
+     ▼
+Response displayed in UI
 
-SkillBridge AI consists of multiple intelligent components working together:
 
-1️⃣ AI Resume Analyzer
+---
 
-Extracts technical and soft skills from resumes, projects, and portfolios
+## ⚙️ API Endpoints
 
-Builds a comprehensive Skill Profile
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | /analyze_resume | Extract skills from resume text |
+| POST | /analyze_resume_file | Upload PDF → extract + analyze |
+| POST | /match_internship | Score resume vs role |
+| POST | /chat | Career advisor chatbot |
+| GET | /health | Health check |
 
-Identifies skill gaps and suggests improvements
+---
 
-Supports PDF, DOC, and text formats
+## 💰 Cost Estimate
 
-2️⃣ AI Resume Builder & Optimizer
+| Service | Est. Monthly Cost |
+|---|---|
+| Amazon Bedrock | ~$0.50–$2.00 |
+| AWS Lambda | ~$0.00–$0.20 |
+| API Gateway | ~$0.10–$1.00 |
+| Amazon S3 | ~$0.01–$0.05 |
+| *Total* | *~$1–$3/month* |
 
-Optimizes resumes for specific internship roles
+---
 
-Generates role-specific descriptions
+## 👩‍💻 Built By
 
-Maintains factual accuracy while improving presentation
+*Logic Loops* — AWS AI for Bharat Hackathon 2025
 
-Explains why each change improves selection chances
-
-3️⃣ AI Career Path Discovery Engine
-
-Identifies career paths based on skills and interests
-
-Suggests non-obvious and emerging career options
-
-Provides personalized learning roadmaps
-
-Includes market demand and growth insights
-
-4️⃣ AI Internship Matching & Ranking Engine
-
-Matches students and internships using:
-
-Skill similarity
-
-Learning compatibility
-
-Location & duration preferences
-
-Ranks opportunities using Success Probability
-
-Provides transparent explanations for recommendations
-
-5️⃣ AI Interview Preparation System
-
-Generates role-specific mock interview questions
-
-Provides real-time feedback and improvement tips
-
-Adapts difficulty based on student performance
-
-Supports company-specific interview patterns
-
-6️⃣ 24/7 AI Career Chatbot
-
-Always-available career assistant
-
-Answers queries on eligibility, skills, and applications
-
-Maintains conversation context
-
-Escalates to human advisors when needed
-
-7️⃣ Student Profile Management
-
-Tracks academic background, skills, and interests
-
-Monitors learning progress over time
-
-Updates internship recommendations dynamically
-
-Ensures secure handling of personal data
-
-8️⃣ Internship Provider Interface
-
-Allows organizations to post internship opportunities
-
-Ranks candidates using AI-calculated success probability
-
-Provides explainable candidate recommendations
-
-Simplifies candidate shortlisting
-
-9️⃣ Success Tracking & Analytics
-
-Tracks internship outcomes and completion rates
-
-Analyzes feedback to improve future matches
-
-Generates platform performance reports
-
-Enables continuous AI model improvement
-
-🔐 Data Security & Privacy
-
-SkillBridge AI prioritizes user trust by:
-
-Encrypting all personal data and documents
-
-Implementing secure authentication & authorization
-
-Sharing data only with explicit user consent
-
-Complying with privacy standards and regulations
-
-🎯 Target Users
-
-🎓 Students seeking meaningful internship opportunities
-
-🏢 Internship providers looking for high-fit candidates
-
-🧑‍💼 Career advisors and institutions
-
-⚙️ Platform administrators and analysts
-
-📈 Why SkillBridge AI?
-
-✔ Moves beyond keyword matching
-✔ Focuses on learning compatibility & success
-✔ Transparent, explainable AI recommendations
-✔ Student-first, outcome-driven design
-
-📌 Future Scope
-
-Integration with learning platforms
-
-Industry-specific skill certifications
-
-Advanced analytics dashboards
-
-Expanded global internship ecosystem
+Built with ❤️ using Flask · Amazon Bedrock · AWS Lambda · S3
